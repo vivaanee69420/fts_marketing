@@ -3,6 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import { verifyCredentials } from "@/lib/blog/users";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  // trustHost: required for reverse-proxy deployment — verify AUTH_URL is set at deploy time
   trustHost: true,
   session: { strategy: "jwt" },
   pages: { signIn: "/admin/login" },
@@ -19,15 +20,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     jwt: ({ token, user }) => {
       if (user) {
-        token.id = (user as { id: string }).id;
-        token.role = (user as { role: string }).role;
+        token.id = user.id;
+        token.role = user.role;
       }
       return token;
     },
     session: ({ session, token }) => {
       if (session.user) {
-        (session.user as { id?: string }).id = token.id as string;
-        (session.user as { role?: string }).role = token.role as string;
+        session.user.id = token.id as string;
+        session.user.role = token.role as string;
       }
       return session;
     },
