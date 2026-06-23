@@ -20,6 +20,11 @@ beforeEach(async () => {
 it("creates a user and verifies credentials", async () => {
   const { createUser, verifyCredentials } = await import("./users");
   await createUser({ email: "Admin@Example.com", name: "Admin", password: "secret123" });
-  expect(await verifyCredentials("admin@example.com", "secret123")).toMatchObject({ name: "Admin" });
+  expect(await verifyCredentials("admin@example.com", "secret123")).toEqual({
+    id: expect.any(String),
+    email: "admin@example.com",
+    name: "Admin",
+    role: "editor",
+  });
   expect(await verifyCredentials("admin@example.com", "wrong")).toBeNull();
 });

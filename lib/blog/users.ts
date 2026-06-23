@@ -37,7 +37,7 @@ export async function createUser(input: {
   return doc;
 }
 
-export async function verifyCredentials(email: string, password: string) {
+export async function verifyCredentials(email: string, password: string): Promise<{ id: string; email: string; name: string; role: string } | null> {
   const user = await getUserByEmail(email);
   if (!user) return null;
   const ok = await bcrypt.compare(password, user.passwordHash);
