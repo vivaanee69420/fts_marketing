@@ -8,3 +8,11 @@ it("keeps safe content, strips dangerous content", () => {
   expect(sanitizeHtml('<img src="x" onerror="alert(1)">')).not.toContain("onerror");
   expect(sanitizeHtml('<a href="javascript:alert(1)">x</a>')).not.toContain("javascript:");
 });
+
+it("blocks data: URI attacks", () => {
+  expect(sanitizeHtml('<a href="data:text/html,<script>alert(1)</script>">x</a>')).not.toContain("data:");
+});
+
+it("strips disallowed h1 heading tag", () => {
+  expect(sanitizeHtml("<h1>Title</h1><p>ok</p>")).not.toContain("<h1>");
+});
