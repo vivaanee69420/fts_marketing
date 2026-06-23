@@ -29,10 +29,9 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
 
 export async function updateCategory(id: string, input: CategoryInput): Promise<void> {
   const data = categoryInputSchema.parse(input);
-  await (await col()).updateOne(
-    { _id: new ObjectId(id) },
-    { $set: { name: data.name, slug: data.slug ? slugify(data.slug) : slugify(data.name), description: data.description } },
-  );
+  const set: Record<string, unknown> = { name: data.name, slug: data.slug ? slugify(data.slug) : slugify(data.name) };
+  if (data.description !== undefined) set.description = data.description;
+  await (await col()).updateOne({ _id: new ObjectId(id) }, { $set: set });
 }
 
 export async function deleteCategory(id: string): Promise<void> {
