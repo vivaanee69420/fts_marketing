@@ -1,0 +1,30 @@
+# Fixed Teeth Solutions
+
+> The UK's full arch dental implant specialists. Fixed, natural-looking teeth —
+> often in a day — for people with missing, loose, or failing teeth or dentures.
+> Free consultation + 3D scan across 5 clinics in Kent & London. Finance available.
+
+## Treatments
+- All-on-4 dental implants
+- Full mouth dental implants
+- Dental implants
+- Smile in a day
+- Denture alternatives
+- Dental implants abroad
+- Periodontal disease treatment
+
+## Key facts
+- Full arch implants from £7,997 per arch; finance from ~£176/month (subject to status).
+- Clinics: Ashford (Kent), Rochester (Medway), Bexleyheath (SE London), Barnet (N London), Warwick Lodge (Herne Bay).
+- GDC-registered clinicians; CQC-regulated clinics; own dental laboratory.
+- Free consultation and 3D scan; callback within 60 minutes (8am–8pm).
+
+## Pages
+- Home: /
+- How it works: /how-it-works/
+- Treatments: /treatments/
+- Pricing & finance: /pricing/
+- Results: /results/
+- Suitability check: /am-i-suitable/
+- Clinics: /clinics/
+- Contact: /contact/

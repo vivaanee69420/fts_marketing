@@ -1,0 +1,147 @@
+@import "tailwindcss";
+
+/* =========================================================
+   FIXED TEETH SOLUTIONS — design tokens (ported from the
+   original site's :root) mapped into the Tailwind v4 theme.
+   Utilities become: bg-teal, text-ink, border-line,
+   font-serif, rounded-card, shadow-card, etc.
+   ========================================================= */
+@theme {
+  --color-ink: #10302b;
+  --color-ink2: #1f4640;
+  --color-teal: #0c6b5d;
+  --color-teal-d: #08544a;
+  --color-teal-l: #0e7c6b;
+  --color-gold: #c39a4d;
+  --color-gold-d: #a87f30;
+  --color-goldsoft: #f7efdd;
+  --color-cream: #faf8f3;
+  --color-soft: #f3f7f5;
+  --color-soft2: #eaf2ef;
+  --color-line: #e4ece9;
+  --color-muted: #5e6f6a;
+
+  --radius-card: 16px;
+
+  --shadow-sm: 0 1px 2px rgba(16, 48, 43, 0.05);
+  --shadow-card: 0 2px 6px rgba(16, 48, 43, 0.05), 0 14px 40px rgba(16, 48, 43, 0.07);
+  --shadow-lg: 0 30px 80px rgba(16, 48, 43, 0.16);
+
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+/* ---------- base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: #fff;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.5em;
+  color: var(--color-ink);
+}
+h1 { font-size: clamp(2.3rem, 5vw, 3.7rem); }
+h2 { font-size: clamp(1.8rem, 3.4vw, 2.7rem); }
+h3 { font-size: 1.45rem; }
+h4 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 1.12rem;
+  margin: 0 0 0.5em;
+  color: var(--color-ink);
+}
+
+/* =========================================================
+   Bespoke pieces the original design relied on. Everything
+   else is plain Tailwind utilities in the components.
+   ========================================================= */
+@layer components {
+  .kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-teal);
+    margin-bottom: 16px;
+  }
+  .kicker::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--color-gold);
+  }
+  .kicker-center { justify-content: center; }
+  .kicker-gold { color: var(--color-gold); }
+
+  /* gradient image placeholder (.ph) — fallback when no photo is set */
+  .ph {
+    position: relative;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: linear-gradient(140deg, #0c6b5d, #0e7c6b 55%, #16927d);
+    display: flex;
+    align-items: flex-end;
+    color: #fff;
+    min-height: 200px;
+    box-shadow: var(--shadow-card);
+  }
+  .ph-gold {
+    background: linear-gradient(140deg, #c39a4d, #d8b15f 60%, #e6c878);
+    color: #3a2c08;
+  }
+
+  /* numbered step cards (how it works) */
+  .steps { counter-reset: step; }
+  .step::before {
+    counter-increment: step;
+    content: "0" counter(step);
+    position: absolute;
+    top: -18px;
+    left: 24px;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: #fff;
+    background: var(--color-teal);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* FAQ details/summary marker */
+  .qa summary { list-style: none; }
+  .qa summary::-webkit-details-marker { display: none; }
+  .qa summary::after {
+    content: "+";
+    font-size: 1.5rem;
+    color: var(--color-teal);
+    font-weight: 400;
+    transition: transform 0.2s;
+    margin-left: auto;
+  }
+  .qa[open] summary::after { transform: rotate(45deg); }
+
+  /* hero radial wash */
+  .hero-wash {
+    background: radial-gradient(120% 120% at 80% -10%, #eef6f3 0%, #fff 55%);
+  }
+}
