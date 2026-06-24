@@ -11,7 +11,7 @@ export const TEAM: TeamMember[] = [
     slug: "gaurav-mehta",
     name: "Gaurav Mehta",
     role: "Lead Implant Specialist",
-    bio: "Leads complex full arch cases with advanced 3D-guided surgery and years of dedicated implant experience.",
+    bio: "Leads complex implant and full arch rehabilitation cases, combining advanced digital planning, guided surgery and extensive clinical experience to deliver predictable, life-changing results.",
     photo: "https://assets.cdn.filesafe.space/M2XSNIR4apA5H3xESZuY/media/6a3aad1b181eb301d443d726.png",
   },
   {
