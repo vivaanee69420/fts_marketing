@@ -9,6 +9,20 @@ export const postInputSchema = z.object({
   excerpt: z.string().trim().min(10).max(320),
   contentHtml: z.string().min(1),
   coverImageId: z.string().optional(),
+  coverImageUrl: z.string().url().optional(),
+  coverImageAlt: z.string().trim().max(200).optional(),
+  cssClass: z.string().trim().max(120).optional(),
+  schemaJsonLd: z
+    .string()
+    .trim()
+    .optional()
+    .refine(
+      (v) => {
+        if (v === undefined || v === "") return true;
+        try { JSON.parse(v); return true; } catch { return false; }
+      },
+      { message: "Schema Code must be valid JSON" },
+    ),
   authorSlug: z.string().optional(),
   authorName: z.string().optional(),
   categorySlug: z.string().min(1),
@@ -43,6 +57,10 @@ export type Post = {
   excerpt: string;
   contentHtml: string;
   coverImageId?: ObjectId;
+  coverImageUrl?: string;
+  coverImageAlt?: string;
+  cssClass?: string;
+  schemaJsonLd?: string;
   authorSlug?: string;
   authorName?: string;
   categorySlug: string;
