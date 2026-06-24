@@ -10,8 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "seed:admin": "node --experimental-strip-types scripts/seed-admin.ts",
-    "db:indexes": "node --experimental-strip-types scripts/ensure-indexes.ts"
+    "seed:admin": "node --experimental-strip-types --import ./scripts/register-alias.mjs scripts/seed-admin.ts",
+    "db:indexes": "node --experimental-strip-types --import ./scripts/register-alias.mjs scripts/ensure-indexes.ts"
   },
   "dependencies": {
     "@tiptap/extension-image": "^3.27.1",
