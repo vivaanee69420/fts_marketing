@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { ObjectId } from "mongodb";
 import { getDb, COLLECTIONS } from "@/lib/mongo";
 import { slugify } from "./slug";
@@ -23,9 +24,9 @@ export async function listCategories(): Promise<Category[]> {
   return (await col()).find().sort({ name: 1 }).toArray();
 }
 
-export async function getCategoryBySlug(slug: string): Promise<Category | null> {
+export const getCategoryBySlug = cache(async (slug: string): Promise<Category | null> => {
   return (await col()).findOne({ slug });
-}
+});
 
 export async function updateCategory(id: string, input: CategoryInput): Promise<void> {
   const data = categoryInputSchema.parse(input);

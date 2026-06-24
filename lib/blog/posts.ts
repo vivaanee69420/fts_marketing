@@ -1,3 +1,4 @@
+import { cache } from "react";
 import { ObjectId } from "mongodb";
 import { getDb, COLLECTIONS } from "@/lib/mongo";
 import { slugify } from "./slug";
@@ -79,9 +80,9 @@ export async function getPostById(id: string): Promise<Post | null> {
   return (await col()).findOne({ _id: new ObjectId(id) });
 }
 
-export async function getPublishedBySlug(slug: string): Promise<Post | null> {
+export const getPublishedBySlug = cache(async (slug: string): Promise<Post | null> => {
   return (await col()).findOne({ slug, status: "published" });
-}
+});
 
 export async function getBySlugAnyStatus(slug: string): Promise<Post | null> {
   return (await col()).findOne({ slug });

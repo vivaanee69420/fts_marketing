@@ -3,6 +3,8 @@ import { SITE_URL, TREATMENTS, ABOUT_LINKS, CLINIC_LINKS } from "@/lib/site";
 import { listPublished } from "@/lib/blog/posts";
 import { listCategories } from "@/lib/blog/categories";
 
+export const revalidate = 3600;
+
 /**
  * Dynamic sitemap built from the route model (native app/sitemap.ts, not the
  * build-time next-sitemap package — so Phase-2 blog posts can be added here and

@@ -8,5 +8,5 @@ export async function GET(req: Request) {
   const slug = new URL(req.url).searchParams.get("slug");
   if (!slug) return new Response("Missing slug", { status: 400 });
   (await draftMode()).enable();
-  redirect(`/blog/${slug}/`);
+  redirect(`/blog/${encodeURIComponent(slug)}/`);
 }
