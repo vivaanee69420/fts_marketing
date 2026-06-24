@@ -17,7 +17,7 @@ vi.mock("next/cache", () => ({ revalidatePath: vi.fn() }));
 vi.mock("next/navigation", () => ({ redirect: vi.fn() }));
 vi.mock("@/lib/team", () => ({ getTeamMember: vi.fn(() => ({ name: "Gaurav Mehta" })) }));
 
-import { formToPostInput } from "./actions";
+import { formToPostInput } from "./form";
 
 it("parses form data into PostInput", () => {
   const fd = new FormData();
