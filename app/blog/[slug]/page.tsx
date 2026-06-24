@@ -46,14 +46,27 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             title: post.title,
             description: post.excerpt,
             url: `${SITE_URL}${path}`,
-            image: post.coverImageId ? `${SITE_URL}/api/images/${post.coverImageId.toString()}` : undefined,
+            image: post.coverImageUrl,
             datePublished: (post.publishedAt ?? post.createdAt).toISOString(),
             dateModified: post.updatedAt.toISOString(),
             authorName: post.authorName,
           }),
         ]} />
+        {post.schemaJsonLd && (() => {
+          try {
+            const parsed = JSON.parse(post.schemaJsonLd);
+            return (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(parsed) }}
+              />
+            );
+          } catch {
+            return null;
+          }
+        })()}
 
-        <article className="mx-auto max-w-[760px]">
+        <article className={`mx-auto max-w-[760px] ${post.cssClass ?? ""}`}>
           <Kicker>{post.categorySlug}</Kicker>
           <h1>{post.title}</h1>
           <div className="my-4">
