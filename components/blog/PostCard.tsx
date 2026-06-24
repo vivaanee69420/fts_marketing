@@ -8,8 +8,8 @@ export function PostCard({ post }: { post: Post }) {
     <article className="overflow-hidden rounded-card border border-line bg-white shadow-sm">
       <Link href={href} className="block">
         <div className="relative aspect-[16/9] bg-gradient-to-br from-teal to-teal-l">
-          {post.coverImageId && (
-            <Image src={`/api/images/${post.coverImageId.toString()}`} alt={post.title}
+          {post.coverImageUrl && (
+            <Image src={post.coverImageUrl} alt={post.coverImageAlt ?? post.title}
               fill sizes="(max-width:940px) 100vw, 33vw" className="object-cover" />
           )}
         </div>

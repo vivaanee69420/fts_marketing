@@ -60,3 +60,18 @@ it("getPublishedBySlug returns null for drafts", async () => {
   const d = await createPost({ ...base, title: "Hidden", status: "draft" });
   expect(await getPublishedBySlug(d.slug)).toBeNull();
 });
+
+it("persists the new editor fields", async () => {
+  const { createPost } = await import("@/lib/blog/posts");
+  const post = await createPost({
+    ...base,
+    coverImageUrl: "https://cdn.example.com/blog/x.png",
+    coverImageAlt: "diagram",
+    cssClass: "long-form",
+    schemaJsonLd: '{"@type":"FAQPage"}',
+  });
+  expect(post.coverImageUrl).toBe("https://cdn.example.com/blog/x.png");
+  expect(post.coverImageAlt).toBe("diagram");
+  expect(post.cssClass).toBe("long-form");
+  expect(post.schemaJsonLd).toBe('{"@type":"FAQPage"}');
+});

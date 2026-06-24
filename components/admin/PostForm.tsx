@@ -1,12 +1,14 @@
 import { savePost } from "@/app/admin/actions";
 import { RichTextEditor } from "./RichTextEditor";
+import { CoverImageUpload } from "./CoverImageUpload";
 import { Button } from "@/components/ui/Button";
 import type { Category } from "@/lib/blog/schemas";
 import type { TeamMember } from "@/lib/team";
 
 type Values = {
   id?: string; title?: string; slug?: string; excerpt?: string; contentHtml?: string;
-  coverImageId?: string; authorSlug?: string; categorySlug?: string; tags?: string[];
+  coverImageUrl?: string; coverImageAlt?: string; cssClass?: string; schemaJsonLd?: string;
+  authorSlug?: string; categorySlug?: string; tags?: string[];
   status?: string; featured?: boolean; metaTitle?: string; metaDescription?: string;
 };
 
@@ -18,12 +20,15 @@ export function PostForm({ values = {}, categories, team }: { values?: Values; c
       {values.id && <input type="hidden" name="id" value={values.id} />}
       <input className={field} name="title" placeholder="Title" defaultValue={values.title} required />
       <input className={field} name="slug" placeholder="Slug (optional — auto from title)" defaultValue={values.slug} />
+      <input className={field} name="cssClass" placeholder="Add Class (CSS class)" defaultValue={values.cssClass} />
+      <textarea className={field} name="schemaJsonLd" placeholder="Schema Code (JSON-LD)" defaultValue={values.schemaJsonLd} />
       <textarea className={field} name="excerpt" placeholder="Excerpt" defaultValue={values.excerpt} required />
+
+      <label className="text-sm font-semibold">Cover image</label>
+      <CoverImageUpload initialUrl={values.coverImageUrl} initialAlt={values.coverImageAlt} />
 
       <label className="text-sm font-semibold">Body</label>
       <RichTextEditor name="contentHtml" initialHtml={values.contentHtml} />
-
-      <input className={field} name="coverImageId" placeholder="Cover image id (upload via body image, paste id)" defaultValue={values.coverImageId} />
 
       <div className="grid grid-cols-2 gap-4">
         <select className={field} name="categorySlug" defaultValue={values.categorySlug} required>
