@@ -15,6 +15,16 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
+
+# SSG pages (treatments, location pages) read MongoDB at BUILD time, so these
+# must be available during `next build`. In Railway, set them as Build Args
+# (Service → Settings → Build → Build Args) referencing your service variables,
+# e.g. MONGODB_URI=${{MONGODB_URI}} and MONGODB_DB=${{MONGODB_DB}}.
+ARG MONGODB_URI
+ARG MONGODB_DB
+ENV MONGODB_URI=$MONGODB_URI
+ENV MONGODB_DB=$MONGODB_DB
+
 RUN npm run build
 
 # 3. Minimal runtime image
