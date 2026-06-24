@@ -95,3 +95,27 @@ export function breadcrumb(trail: { name: string; path: string }[]) {
     })),
   };
 }
+
+export function blogPosting(args: {
+  title: string;
+  description: string;
+  url: string;
+  image?: string;
+  datePublished: string;
+  dateModified: string;
+  authorName?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: args.title,
+    description: args.description,
+    mainEntityOfPage: args.url,
+    url: args.url,
+    ...(args.image ? { image: args.image } : {}),
+    datePublished: args.datePublished,
+    dateModified: args.dateModified,
+    author: { "@type": "Person", name: args.authorName ?? "Fixed Teeth Solutions" },
+    publisher: { "@type": "Organization", name: "Fixed Teeth Solutions" },
+  };
+}

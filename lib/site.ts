@@ -36,7 +36,7 @@ export const ABOUT_LINKS: NavLink[] = [
   { label: "Reviews", href: "/reviews/" },
   { label: "Careers", href: "/careers/" },
   { label: "For Dentists", href: "/for-dentists/" },
-  { label: "Blog", href: "/about/blog/" },
+  { label: "Blog", href: "/blog/" },
   { label: "Contact Us", href: "/contact/" },
 ];
 
