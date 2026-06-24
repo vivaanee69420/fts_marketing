@@ -28,7 +28,6 @@ function processInput(data: PostInput) {
     title: data.title,
     excerpt: data.excerpt,
     contentHtml,
-    coverImageId: data.coverImageId ? new ObjectId(data.coverImageId) : undefined,
     coverImageUrl: data.coverImageUrl,
     coverImageAlt: data.coverImageAlt,
     cssClass: data.cssClass,

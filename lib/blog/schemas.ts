@@ -8,7 +8,6 @@ export const postInputSchema = z.object({
   slug: z.string().trim().min(1).max(180).optional(), // derived from title if absent
   excerpt: z.string().trim().min(10).max(320),
   contentHtml: z.string().min(1),
-  coverImageId: z.string().optional(),
   coverImageUrl: z.string().url().optional(),
   coverImageAlt: z.string().trim().max(200).optional(),
   cssClass: z.string().trim().max(120).optional(),
@@ -56,7 +55,6 @@ export type Post = {
   slug: string;
   excerpt: string;
   contentHtml: string;
-  coverImageId?: ObjectId;
   coverImageUrl?: string;
   coverImageAlt?: string;
   cssClass?: string;
