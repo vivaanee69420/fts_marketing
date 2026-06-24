@@ -58,7 +58,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             return (
               <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(parsed) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(parsed).replace(/</g, "\\u003c") }}
               />
             );
           } catch {
