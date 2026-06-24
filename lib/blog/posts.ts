@@ -83,6 +83,10 @@ export async function getPublishedBySlug(slug: string): Promise<Post | null> {
   return (await col()).findOne({ slug, status: "published" });
 }
 
+export async function getBySlugAnyStatus(slug: string): Promise<Post | null> {
+  return (await col()).findOne({ slug });
+}
+
 export async function listPublished(opts: {
   page?: number; perPage?: number; categorySlug?: string; tag?: string;
 } = {}): Promise<{ items: Post[]; total: number }> {

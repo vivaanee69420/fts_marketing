@@ -4,7 +4,8 @@ import { pageMeta } from "@/lib/seo";
 import { SITE_URL } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumb, blogPosting } from "@/lib/jsonld";
-import { getPublishedBySlug, listRelated } from "@/lib/blog/posts";
+import { draftMode } from "next/headers";
+import { getPublishedBySlug, getBySlugAnyStatus, listRelated } from "@/lib/blog/posts";
 import { AuthorByline } from "@/components/blog/AuthorByline";
 import { ShareButtons } from "@/components/blog/ShareButtons";
 import { PostCard } from "@/components/blog/PostCard";
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getPublishedBySlug(slug);
+  const { isEnabled } = await draftMode();
+  const post = isEnabled ? await getBySlugAnyStatus(slug) : await getPublishedBySlug(slug);
   if (!post) notFound();
   const related = await listRelated(post);
   const path = `/blog/${post.slug}/`;

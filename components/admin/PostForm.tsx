@@ -52,7 +52,13 @@ export function PostForm({ values = {}, categories, team }: { values?: Values; c
         <option value="published">Published</option>
       </select>
 
-      <Button variant="teal" type="submit">Save</Button>
+      <div className="flex items-center gap-4">
+        <Button variant="teal" type="submit">Save</Button>
+        {values.id && values.slug && (
+          <a href={`/api/preview?slug=${values.slug}`} target="_blank" rel="noopener noreferrer"
+             className="text-sm font-semibold text-teal">Preview draft ↗</a>
+        )}
+      </div>
     </form>
   );
 }
