@@ -6,8 +6,6 @@ export const COLLECTIONS = {
   categories: "categories",
 } as const;
 
-export const IMAGES_BUCKET = "images";
-
 // Cache across hot-reloads in dev and across requests on the long-lived server.
 const globalForMongo = globalThis as unknown as {
   _mongoClientPromise?: Promise<MongoClient>;
