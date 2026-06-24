@@ -1,4 +1,11 @@
-import { auth } from "@/lib/auth";
+import NextAuth from "next-auth";
+import authConfig from "@/lib/auth.config";
+
+// Build the auth instance from the Edge-safe config ONLY (no mongodb/provider
+// imports) so the middleware bundle stays within the Edge runtime. Using
+// `@/lib/auth` here would pull the mongodb driver into the Edge bundle and
+// crash at runtime ("a Node.js API is used … not supported in the Edge Runtime").
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
